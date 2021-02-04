@@ -151,6 +151,8 @@ port_src += $(addprefix python/port/,\
   mod/turtle/modturtle_table.c \
   mod/turtle/turtle.cpp \
   mphalport.c \
+  uart.c \
+	uart_impl.c \
 )
 
 # Workarounds
