@@ -12,7 +12,8 @@ CXXFLAGS = -std=c++11 -fno-exceptions -fno-rtti -fno-threadsafe-statics
 
 # Flags - Optimizations
 ifeq ($(DEBUG),1)
-SFLAGS += -O0 -g
+SFLAGS = -Os -g
+//SFLAGS += -O0 -g
 else
 SFLAGS += -Os
 SFLAGS += -DNDEBUG
