@@ -52,7 +52,15 @@ def roots(a,b,c):
     return x_1, x_2
   else:
     return None)");
-
+  
+constexpr ScriptTemplate uartChatScriptTemplate("uart_chat.py", R"(import uart
+def chat():
+  while True:
+    line = input("-->")
+    uart.writeLine(line)
+    line = uart.readLine()
+    print("<--" + line))");
+  
 constexpr ScriptTemplate parabolaScriptTemplate("parabola.py", "\x01" R"(from matplotlib.pyplot import *
 from math import *
 
@@ -103,5 +111,9 @@ const ScriptTemplate * ScriptTemplate::Polynomial() {
 const ScriptTemplate * ScriptTemplate::Parabola() {
   return &parabolaScriptTemplate;
 }
+const ScriptTemplate * ScriptTemplate::UartChat() {
+  return &uartChatScriptTemplate;
+}	
 
+}
 }
