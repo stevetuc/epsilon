@@ -1,7 +1,13 @@
+extern "C" {
+#include "rt0.h"
+}	}
 #include "isr.h"
 #include <stdint.h>
 #include <string.h>
 #include <ion.h>
+#include "../device.h"
+#include "../console.h"
+#include "../ring_buffer.h"
 #include "../drivers/board.h"
 #include "../drivers/reset.h"
 #include "../drivers/timing.h"
@@ -25,6 +31,15 @@ void __attribute__((noinline)) abort() {
   while (1) {
   }
 #endif
+}
+
+volatile RingBuffer<char, 1024> usart6_rx_buffer;
+void ISR_USART6() {
+  if (USART(6).SR()->getRXNE()) {
+    // Handle RXNE
+    char c = (char)USART(6).DR()->get();
+    usart6_rx_buffer.push(c);
+  }
 }
 
 /* In order to ensure that this method is execute from the external flash, we
