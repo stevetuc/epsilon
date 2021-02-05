@@ -5,8 +5,8 @@ extern "C" {
 #include <stdint.h>
 #include <string.h>
 #include <ion.h>
-#include "../device.h"
-#include "../console.h"
+//#include "../device.h"
+//#include "../console.h"
 #include "../ring_buffer.h"
 #include "../drivers/board.h"
 #include "../drivers/reset.h"
